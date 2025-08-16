@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const OpenAI = require("openai");
+const {deepSeekAI} = require("./service/deepseek");
 
 const {connectMongoDb} = require('./connect');
 
@@ -25,9 +26,14 @@ app.use( express.urlencoded({extended: false}) );
 
 /********** BOT Starts Here **********/
 
-const client_id = ''; // Discord Client ID
+/*const client_id = ''; // Discord Client ID
 const token = ''; // Discord Token
+const openAIKey = '';*/
+
+const client_id = '';
+const token = '';
 const openAIKey = '';
+const ds_api_key = '';
 
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 
@@ -38,8 +44,10 @@ client.on('messageCreate', (message) => {
         return;
     }
 
-    openAiResponse(openAIKey,message);
-
+    //openAiResponse(openAIKey,message);
+    const prefix = '!deepseek';
+    
+    //deepSeekAI(prefix,message,ds_api_key);
 });
 
 client.on('interactionCreate', (interaction) => {
